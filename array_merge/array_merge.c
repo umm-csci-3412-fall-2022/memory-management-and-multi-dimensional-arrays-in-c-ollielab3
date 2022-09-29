@@ -7,7 +7,6 @@ void mergesortRange(int size, int values[], int low, int high);
 void mergeRanges(int size, int values[], int low, int midpoint, int high);
 int* array_merge(int num_arrays, int* sizes, int** values) {
 	
-	// This is obviously broken. It has the right type, though, eh?
 	int totalLength = 0;
 	for(int i = 0; i< num_arrays; i++){
 		totalLength += sizes[i];
@@ -25,22 +24,16 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
 	mergesort(i,bigArray);
 	int *bigArray2 = (int*) calloc(totalLength, sizeof(int));
 	int i2 = 1;
-	for (int u = 0; u<i; u++){
+	bigArray2[i2++] = bigArray[0];
+	for (int u = 1; u<i; u++){
 		if (bigArray[u]!=bigArray2[i2-1]) bigArray2[i2++] = bigArray[u];
 	}
-	bigArray[0] = i2-1;
+	bigArray2[0] = i2-1;
 	free(bigArray);
 	return bigArray2;
 }
 
 void mergesort(int size, int values[]) {
-  // This obviously doesn't actually do any *sorting*, so there's
-  // certainly work still to be done.
-  //
-  // Remember that a key goal here is to learn to use
-  // `malloc/calloc` and `free`, so make sure you explicitly
-  // allocate any new arrays that you need, even if you
-  // might not strictly need to.
   mergesortRange(size, values, 0, size);
   return;
 }
