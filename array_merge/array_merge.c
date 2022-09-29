@@ -11,8 +11,10 @@ int* array_merge(int num_arrays, int* sizes, int** values) {
 	for(int i = 0; i< num_arrays; i++){
 		totalLength += sizes[i];
 	}
+	totalLength++;
 	int *bigArray = (int*) calloc(totalLength, sizeof(int));
-	if (totalLength == 0){
+	if (totalLength == 1){
+		bigArray[0] = 0;
 		return bigArray;
 	}
 	int i = 0;
